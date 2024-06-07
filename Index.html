@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Files from Translations</title>
+    <style>
+	p {
+  line-height: 1.2; /* Adjust this value as needed */
+  margin: 0;
+}
+        .file-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .file-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #000; /* Set background to black */
+            color: #fff; /* Set text color to white for better contrast */
+            transition: background-color 0.3s;
+        }
+        .file-item:hover {
+            background-color: #333; /* Slightly lighter black on hover */
+        }
+        .content {
+            margin-top: 20px;
+            white-space: pre-wrap; /* Preserve whitespace in text content */
+        }
+		
+		body {
+  background-color: black;
+  color: white;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 5px;
+  position: relative;
+}
+
+.meanings {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: black;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 10;
+  white-space: nowrap;
+  color: white;
+}
+
+.word:hover .meanings {
+  display: block;
+}
+
+.word .current-meaning::after {
+  content: attr(data-greek);
+  display: none;
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+  white-space: nowrap;
+  background-color: black;
+  border: 1px solid #ccc;
+  padding: 2px 5px;
+  z-index: 20;
+  color: white;
+}
+
+.word:hover .current-meaning::after {
+  display: block;
+}
+
+.border-color {
+  border-width: 2px;
+  border-style: solid;
+}
+.checkbox-container {
+  margin-bottom: 20px; /* Adjust this value as needed for the desired space */
+}
+    </style>
+</head>
+<body>
+    <div class="file-list" id="fileList"></div>
+    <div class="content" id="fileContent"></div>
+<div class="checkbox-container">
+  <label for="toggle-border">Show Borders for meanings with no alternatives</label>
+  <input type="checkbox" id="toggle-border" unchecked>
+</div>
+
+<p id="text"></p>
+    <script src="script.js?v=2"></script> <!-- Change version number to force reload if needed -->
+</body>
+</html>
