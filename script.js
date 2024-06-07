@@ -1,3 +1,10 @@
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
 async function fetchFileList() {
     try {
         const response = await fetch('translations.json');
@@ -44,6 +51,17 @@ function displayFileList(files) {
 (async function() {
     const files = await fetchFileList();
     displayFileList(files);
+
+    // Check for the 'book' parameter in the URL and autoload the file if present
+    const book = getUrlParameter('book');
+    if (book) {
+        const fileToLoad = files.find(file => file.endsWith(book));
+        if (fileToLoad) {
+            loadFile(fileToLoad);
+        } else {
+            console.error('File not found: ' + book);
+        }
+    }
 })();
 
 function Showtranslation(wordPairs) {
