@@ -18,29 +18,29 @@ jobs:
         run: ls -la translations
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          path: 'translations'
+          name: translations
+          path: translations
 
   deploy:
     needs: pages-directory-listing
+    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Download artifact
-        uses: actions/download-pages-artifact@v1
+        uses: actions/download-artifact@v2
+        with:
+          name: translations
+          path: translations
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
         with:
-          path: 'translations'
+          path: translations
