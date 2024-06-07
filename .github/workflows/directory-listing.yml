@@ -8,19 +8,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Generate Directory Listings
-        uses: jayanta525/github-pages-directory-listing@v4.0.0
-        with:
-          FOLDER: translations
-          OUTPUT_FILE: translations/index.html
-
-      - name: List contents after generating directory listings
-        run: ls -la translations
+      - name: Generate Directory Listing
+        run: |
+          cd translations
+          echo "<html><body><ul>" > index.html
+          for file in *; do
+            echo "<li><a href='$file'>$file</a></li>" >> index.html
+          done
+          echo "</ul></body></html>" >> index.html
 
       - name: Upload translations directory
         uses: actions/upload-artifact@v2
         with:
-          name: directory-listing
+          name: translations
           path: translations/
 
   deploy:
@@ -34,26 +34,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Create deployment directory
-        run: mkdir deployment
-
-      - name: Copy existing files except deployment
-        run: |
-          shopt -s extglob
-          cp -r !(deployment) deployment/
-
-      - name: Download artifact
+      - name: Download translations artifact
         uses: actions/download-artifact@v2
         with:
-          name: directory-listing
-          path: deployment/translations/
-
-      - name: List contents of deployment for verification
-        run: ls -la deployment
+          name: translations
+          path: translations/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}
-          publish_dir: deployment
+          publish_dir: ./
           keep_files: true
