@@ -21,6 +21,7 @@ jobs:
           done
           sed -i '$ s/,$//' translations.json
           echo "]" >> translations.json
+          cat translations.json
 
       - name: Commit and push changes
         run: |
