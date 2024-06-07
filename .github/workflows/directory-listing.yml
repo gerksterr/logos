@@ -13,14 +13,14 @@ jobs:
         with:
           FOLDER: translations
 
-      - name: List contents
+      - name: List contents after generating directory listings
         run: ls -la translations
 
-      - name: Upload artifact
+      - name: Upload translations directory
         uses: actions/upload-artifact@v2
         with:
           name: directory-listing
-          path: translations
+          path: translations/
 
   deploy:
     needs: pages-directory-listing
@@ -37,6 +37,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: directory-listing
+          path: directory-listing/
+
+      - name: List contents after downloading artifact
+        run: ls -la directory-listing/
 
       - name: Copy artifact to docs/translations
         run: |
