@@ -21,7 +21,8 @@ jobs:
           done
           sed -i '$ s/,$//' translations.json
           echo "]" >> translations.json
-          cat translations.json
+          cat translations.json  # Display the content of translations.json for debugging
+          ls -la  # List files to verify translations.json is created
 
       - name: Commit and push changes
         run: |
