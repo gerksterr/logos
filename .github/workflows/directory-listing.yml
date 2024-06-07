@@ -20,7 +20,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: translations
+          name: directory-listing
           path: translations
 
   deploy:
@@ -37,10 +37,9 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: translations
-          path: translations
+          name: directory-listing
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
         with:
-          path: translations
+          path: directory-listing/translations
