@@ -42,8 +42,10 @@ jobs:
           name: directory-listing
           path: deployment/translations
 
-      - name: Copy existing files to deployment directory
-        run: cp -r * deployment/
+      - name: Copy existing files to deployment directory, excluding deployment itself
+        run: |
+          shopt -s extglob
+          cp -r !(deployment) deployment/
 
       - name: List contents of deployment for verification
         run: ls -la deployment
