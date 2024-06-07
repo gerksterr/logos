@@ -38,10 +38,13 @@ jobs:
         with:
           name: directory-listing
 
-      - name: Copy artifact to docs
+      - name: Copy artifact to docs/translations
         run: |
           mkdir -p docs/translations
-          cp -r directory-listing/translations/* docs/translations/
+          cp -r directory-listing/* docs/translations/
+
+      - name: List contents of docs/translations for verification
+        run: ls -la docs/translations
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
