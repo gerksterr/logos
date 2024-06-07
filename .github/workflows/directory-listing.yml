@@ -38,10 +38,13 @@ jobs:
         with:
           name: directory-listing
 
+      - name: Copy artifact to docs
+        run: |
+          mkdir -p docs/translations
+          cp -r directory-listing/translations/* docs/translations/
+
       - name: Deploy to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}
-          publish_dir: translations
+          publish_dir: docs
