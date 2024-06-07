@@ -39,7 +39,9 @@ jobs:
           name: directory-listing
 
       - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: directory-listing/translations
+          personal_token: ${{ secrets.GH_PAT }}
+          publish_dir: translations
