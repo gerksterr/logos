@@ -4,7 +4,6 @@ on: [push]
 jobs:
   pages-directory-listing:
     runs-on: ubuntu-latest
-    name: Directory Listings Index
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -40,6 +39,7 @@ jobs:
           name: directory-listing
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: directory-listing/translations
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: directory-listing/translations
