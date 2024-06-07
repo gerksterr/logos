@@ -1,16 +1,11 @@
 async function fetchFileList() {
     try {
-        // Fetch the directory listing HTML page
-        const response = await fetch('translations/index.html'); // Adjust the path if necessary
+        const response = await fetch('translations.json');
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        // Adjust the selector to match the structure of the generated index.html
-        const links = [...doc.querySelectorAll('a')].filter(link => link.href.endsWith('.tra'));
-        return links.map(link => 'translations/' + link.getAttribute('href'));
+        const files = await response.json();
+        return files.map(file => 'translations/' + file);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
         return [];
@@ -23,7 +18,7 @@ async function loadFile(file) {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
-        let text = await response.text();
+        var text = await response.text();
         text = text.trim().endsWith(',') ? text.trim().slice(0, -1) : text.trim();
         const jsonText = `[${text}]`;
         console.log(jsonText);
@@ -104,6 +99,7 @@ function Showtranslation(wordPairs) {
             meaningsDiv.className = 'meanings';
 
             meanings.forEach(meaning => {
+                console.log('test3');
                 const meaningSpan = document.createElement('span');
                 meaningSpan.innerText = meaning[0];
                 meaningSpan.style.display = 'block';
