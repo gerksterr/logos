@@ -21,15 +21,17 @@ jobs:
           done
           sed -i '$ s/,$//' translations.json
           echo "]" >> translations.json
-          cat translations.json  # Display the content of translations.json for debugging
-          ls -la  # List files to verify translations.json is created
+          echo "Generated translations.json:"
+          cat translations.json
+          echo "Files in repository:"
+          ls -la
 
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add translations.json
-          git commit -m 'Update translations.json'
+          git commit -m 'Update translations.json' || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
