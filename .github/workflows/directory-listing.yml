@@ -2,7 +2,7 @@ name: directory-listing
 on: [push]
 
 jobs:
-  pages-directory-listing:
+  generate-directory-listing:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -23,7 +23,7 @@ jobs:
           path: translations/
 
   deploy:
-    needs: pages-directory-listing
+    needs: generate-directory-listing
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -33,26 +33,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Create directories for deployment
+        run: mkdir -p deployment/translations
+
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: directory-listing
-          path: directory-listing/
+          path: deployment/translations
 
-      - name: List contents after downloading artifact
-        run: ls -la directory-listing/
+      - name: Copy existing files to deployment directory
+        run: cp -r * deployment/
 
-      - name: Copy artifact to docs/translations
-        run: |
-          mkdir -p docs/translations
-          cp -r directory-listing/* docs/translations/
-
-      - name: List contents of docs/translations for verification
-        run: ls -la docs/translations
+      - name: List contents of deployment for verification
+        run: ls -la deployment
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}
-          publish_dir: docs
+          publish_dir: deployment
           keep_files: true
