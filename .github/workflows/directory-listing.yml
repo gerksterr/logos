@@ -12,12 +12,15 @@ jobs:
       - name: Generate Directory Listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
-          FOLDER: translations  # specify the folder to generate index
+          FOLDER: translations
+
+      - name: List contents
+        run: ls -la translations
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'translations'  # specify the folder to upload
+          path: 'translations'
 
   deploy:
     needs: pages-directory-listing
@@ -31,6 +34,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        uses: actions/download-pages-artifact@v1
+
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          path: 'translations'
