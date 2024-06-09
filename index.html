@@ -62,25 +62,16 @@
 .word .current-meaning::after {
   content: attr(data-greek);
   display: none;
-  position: absolute;
-  top: -1.5em;
-  left: 0;
-  white-space: nowrap;
+  position: fixed;
   background-color: black;
   border: 1px solid #ccc;
   padding: 2px 5px;
   z-index: 20;
   color: white;
-
-      /* Existing styles for the tooltip */
-      max-width: 800px; /* Adjust as needed to fit your design */
-      white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
-      word-wrap: break-word; /* Ensures long words do not overflow */
-  
-}
-.word.current-meaning::after span {
-  position: relative; display: inline-block;
-  margin-top:-120px; margin-left: -100px;
+  max-width: 800px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  pointer-events: none;
 }
 
 .word:hover .current-meaning::after {
