@@ -122,7 +122,7 @@ function Showtranslation(wordPairs) {
             meaningsDiv.className = 'meanings';
 
             meanings.forEach(meaning => {
-                if(meaning.isString()) return;
+                if(typeof meaning === 'string') return;
 
                 //console.log('test3');
                 const meaningSpan = document.createElement('span');
