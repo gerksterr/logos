@@ -171,12 +171,12 @@ function Showtranslation(wordPairs) {
 function updateTooltipPosition(event) {
     const tooltip = document.querySelector('.word:hover .current-meaning::after');
     if (tooltip) {
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
-      const tooltipWidth = tooltip.offsetWidth;
-      const tooltipHeight = tooltip.offsetHeight;
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
+        const mouseX = event.pageX;
+        const mouseY = event.pageY;
+        const tooltipWidth = tooltip.offsetWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
   
       let tooltipX = mouseX;
       let tooltipY = mouseY - tooltipHeight - 10; // Position above the cursor with some offset
