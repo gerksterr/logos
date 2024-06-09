@@ -62,43 +62,31 @@
 .word .current-meaning::after {
   content: attr(data-greek);
   display: none;
-  position: fixed;
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+  white-space: nowrap;
   background-color: black;
   border: 1px solid #ccc;
   padding: 2px 5px;
   z-index: 20;
   color: white;
-  max-width: 800px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  pointer-events: none;
+
+      /* Existing styles for the tooltip */
+      max-width: 800px; /* Adjust as needed to fit your design */
+      white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
+      word-wrap: break-word; /* Ensures long words do not overflow */
+  
+}
+.word.current-meaning::after span {
+  position: relative; display: inline-block;
+  margin-top:-120px; margin-left: -100px;
 }
 
 .word:hover .current-meaning::after {
   display: block;
 }
-.current-meaning[data-tooltip] {
-  position: relative;
-}
 
-.current-meaning[data-tooltip]::after {
-  content: attr(data-tooltip);
-  display: none;
-  position: fixed;
-  background-color: black;
-  border: 1px solid #ccc;
-  padding: 2px 5px;
-  z-index: 20;
-  color: white;
-  max-width: 800px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  pointer-events: none;
-}
-
-.current-meaning[data-tooltip]:hover::after {
-  display: block;
-}
 .border-color {
   border-width: 2px;
   border-style: solid;
@@ -115,7 +103,6 @@
     </style>
 </head>
 <body>
-  <span class="current-meaning" data-tooltip="tooltip content">Word</span>
     <div class="file-list" id="fileList"></div>
     <div class="content" id="fileContent"></div>
 <div class="checkbox-container">
