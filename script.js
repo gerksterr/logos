@@ -187,9 +187,9 @@ function updateTooltipPosition(event) {
       }
   
       // Adjust vertical position if the tooltip exceeds the window height
-      if (tooltipY < 0) {
-        tooltipY = mouseY + 10; // Position below the cursor if not enough space above
-      }
+      //if (tooltipY < 0) {
+      //  tooltipY = mouseY + 10; // Position below the cursor if not enough space above
+      //}
   
       tooltip.style.left = tooltipX + 'px';
       tooltip.style.top = tooltipY + 'px';
