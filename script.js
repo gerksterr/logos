@@ -114,7 +114,7 @@ function Showtranslation(wordPairs) {
             const currentMeaning = document.createElement('span');
             currentMeaning.className = 'current-meaning border-color';
             currentMeaning.innerText = meanings[0][0];
-            currentMeaning.setAttribute('data-greek', wp[0]);
+            currentMeaning.setAttribute('data-greek', tooltip);
             currentMeaning.setAttribute('data-strength', meanings[0][1]);
             currentMeaning.style.borderColor = getBorderColor(meanings[0][1]);
 
