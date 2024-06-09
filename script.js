@@ -168,32 +168,9 @@ function Showtranslation(wordPairs) {
     toggleBorders();
 }
 
-function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.word:hover .current-meaning::after');
-    if (tooltip) {
-        const mouseX = event.pageX;
-        const mouseY = event.pageY;
-        const tooltipWidth = tooltip.offsetWidth;
-        const tooltipHeight = tooltip.offsetHeight;
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-  
-      let tooltipX = mouseX;
-      let tooltipY = mouseY - tooltipHeight - 10; // Position above the cursor with some offset
-  
-      // Adjust horizontal position if the tooltip exceeds the window width
-      if (tooltipX + tooltipWidth > windowWidth) {
-        tooltipX = windowWidth - tooltipWidth - 10;
-      }
-  
-      // Adjust vertical position if the tooltip exceeds the window height
-      //if (tooltipY < 0) {
-      //  tooltipY = mouseY + 10; // Position below the cursor if not enough space above
-      //}
-  
-      tooltip.style.left = tooltipX + 'px';
-      tooltip.style.top = tooltipY + 'px';
-    }
-  }
 
+  function updateTooltipPosition(event) {
+    const tooltip = document.querySelector('.current-meaning[data-tooltip]:hover::after');
+    // Rest of the code remains the same
+  }
   document.addEventListener('mousemove', updateTooltipPosition);
