@@ -59,24 +59,19 @@
   display: block;
 }
 
-.word .current-meaning::after {
-  content: attr(data-greek);
-  display: none;
+.word:hover .current-meaning::after {
+  display: block;
   position: absolute;
   top: -1.5em;
   left: 0;
-  white-space: nowrap;
   background-color: black;
   border: 1px solid #ccc;
   padding: 2px 5px;
   z-index: 20;
   color: white;
-
-      /* Existing styles for the tooltip */
-      max-width: 80vw; /* Adjust as needed to fit your design */
-      white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
-      word-wrap: break-word; /* Ensures long words do not overflow */
-  
+  max-width: 80vw; /* 80% of the viewport/page width */
+  white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
+  word-wrap: break-word; /* Ensures long words do not overflow */
 }
 
 .word:hover .current-meaning::after {
