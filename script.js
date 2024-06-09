@@ -196,4 +196,4 @@ function updateTooltipPosition(event) {
     }
   }
 
- // document.addEventListener('mousemove', updateTooltipPosition);
+  document.addEventListener('mousemove', updateTooltipPosition);
