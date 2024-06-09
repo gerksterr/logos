@@ -102,7 +102,12 @@ function Showtranslation(wordPairs) {
         } else {
             element = document.createElement('span');
             element.className = 'word';
-            element.setAttribute('data-greek', wp[0]);
+            var tooltip = wp[0];
+            //check the last element of wp. If it is a string, then add it at the end of the tooltip
+            if(wp[wp.length-1].isString())
+                tooltip = `${tooltip} - ${wp[wp.length-1]}`;
+
+            element.setAttribute('data-greek', tooltip);
 
             const meanings = wp.slice(1);
 
@@ -117,6 +122,8 @@ function Showtranslation(wordPairs) {
             meaningsDiv.className = 'meanings';
 
             meanings.forEach(meaning => {
+                if(meaning.isString()) return;
+
                 console.log('test3');
                 const meaningSpan = document.createElement('span');
                 meaningSpan.innerText = meaning[0];
