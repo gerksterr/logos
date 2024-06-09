@@ -59,19 +59,24 @@
   display: block;
 }
 
-.word:hover .current-meaning::after {
-  display: block;
+.word .current-meaning::after {
+  content: attr(data-greek);
+  display: none;
   position: absolute;
   top: -1.5em;
   left: 0;
+  white-space: nowrap;
   background-color: black;
   border: 1px solid #ccc;
   padding: 2px 5px;
   z-index: 20;
   color: white;
-  max-width: 800px; /* 80% of the viewport/page width */
-  white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
-  word-wrap: break-word; /* Ensures long words do not overflow */
+
+      /* Existing styles for the tooltip */
+      max-width: 800px; /* Adjust as needed to fit your design */
+      white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
+      word-wrap: break-word; /* Ensures long words do not overflow */
+  
 }
 
 .word:hover .current-meaning::after {
@@ -85,7 +90,12 @@
 .checkbox-container {
   margin-bottom: 20px; /* Adjust this value as needed for the desired space */
 }
-
+.tooltip {
+  /* Existing styles for the tooltip */
+  max-width: 800px; /* Adjust as needed to fit your design */
+  white-space: pre-wrap; /* Allows the text to wrap and preserves whitespace */
+  word-wrap: break-word; /* Ensures long words do not overflow */
+}
     </style>
 </head>
 <body>
