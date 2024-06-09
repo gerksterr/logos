@@ -102,10 +102,12 @@ function Showtranslation(wordPairs) {
         } else {
             element = document.createElement('span');
             element.className = 'word';
-            var tooltip = wp[0] + 'qq';
+            var tooltip = wp[0];
             //check the last element of wp. If it is a string, then add it at the end of the tooltip
             if (typeof wp[wp.length - 1] === 'string') 
                 tooltip = `${tooltip} - ${wp[wp.length-1]}`;
+
+            
 
             element.setAttribute('data-greek', tooltip);
 
