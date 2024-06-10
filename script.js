@@ -171,7 +171,7 @@ function Showtranslation(wordPairs) {
 
 // Assuming you have a tooltip element with the class 'tooltip'
 function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.tooltip');
+    const tooltip = document.querySelector('.word .current-meaning::after');
     if (tooltip) {
         // Make sure the tooltip is visible to measure its dimensions
         tooltip.style.visibility = 'hidden'; // Hide it without affecting layout
