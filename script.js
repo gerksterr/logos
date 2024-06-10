@@ -179,37 +179,55 @@ function Showtranslation(wordPairs) {
 
 // Function to update the tooltip position
 // Function to update the tooltip position
+// Function to update the tooltip position
 function updateTooltipPosition(event) {
     const tooltip = document.getElementById('tooltip');
     if (tooltip) {
         const tooltipHeight = tooltip.offsetHeight;
+        const tooltipWidth = tooltip.offsetWidth;
         const additionalOffset = 10; // Adjust this value as needed
 
-        // Calculate new position
-        let newTopPosition = event.clientY - tooltipHeight - additionalOffset;
-        let newLeftPosition = event.clientX - 20;//(tooltip.offsetWidth / 2);
-//console.log(newTopPosition);
-newTopPosition = newTopPosition < 0 ? 0 : newTopPosition;
-        // Get the screen width
+        // Get the screen dimensions and scroll position
         const screenWidth = window.innerWidth;
+        const scrollY = window.scrollY;
+
+        // Calculate initial position
+        let newTopPosition = event.clientY + scrollY - tooltipHeight - additionalOffset;
+        let newLeftPosition = event.clientX - (tooltipWidth / 2);
+
+        // Reset maxWidth before recalculating
+        tooltip.style.maxWidth = 'none';
 
         // Check if the tooltip spills over to the right
-        // if (newLeftPosition + tooltip.offsetWidth > screenWidth) {
-        //     tooltip.style.maxWidth = `${screenWidth - event.clientX - 20}px`; // Adjust width to fit within the screen
-        // } else
-        // tooltip.style.maxWidth = screenWidth;
+        if (newLeftPosition + tooltipWidth > screenWidth) {
+            tooltip.style.maxWidth = `${screenWidth - event.clientX - 20}px`; // Adjust width to fit within the screen
+        }
 
         // Check if the tooltip spills over to the left
         if (newLeftPosition < 0) {
-        //   tooltip.style.maxWidth = `${event.clientX - 20}px`; // Adjust width to fit within the screen
+            tooltip.style.maxWidth = `${event.clientX - 20}px`; // Adjust width to fit within the screen
             newLeftPosition = 10; // Set a minimum left position
         }
 
-        const visibleTopPosition = newTopPosition < window.scrollY ? window.scrollY : newTopPosition;
-        console.log(window.scrollY);
+        // Set a reasonable minimum maxWidth to ensure readability
+        const minWidth = 100; // Adjust this value as needed
+        if (parseInt(tooltip.style.maxWidth) < minWidth) {
+            tooltip.style.maxWidth = `${minWidth}px`;
+        }
+
+        // Adjust if the tooltip would go off the top of the screen
+        if (newTopPosition < scrollY) {
+            newTopPosition = event.clientY + scrollY + additionalOffset;
+        }
+
         // Apply new position
-        tooltip.style.top = `${visibleTopPosition+window.scrollY}px`;
+        tooltip.style.top = `${newTopPosition}px`;
         tooltip.style.left = `${newLeftPosition}px`;
     }
 }
+
+// Rest of your code remains unchanged
+
+
+// Rest of your code remains unchanged
 
