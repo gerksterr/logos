@@ -188,7 +188,7 @@ function updateTooltipPosition(event) {
         // Calculate new position
         let newTopPosition = event.clientY - tooltipHeight - additionalOffset;
         let newLeftPosition = event.clientX - 20;//(tooltip.offsetWidth / 2);
-console.log(newTopPosition);
+//console.log(newTopPosition);
 newTopPosition = newTopPosition < 0 ? 0 : newTopPosition;
         // Get the screen width
         const screenWidth = window.innerWidth;
@@ -206,8 +206,9 @@ newTopPosition = newTopPosition < 0 ? 0 : newTopPosition;
         }
 
         const visibleTopPosition = newTopPosition < window.scrollY ? window.scrollY : newTopPosition;
+        console.log(window.scrollY);
         // Apply new position
-        tooltip.style.top = `${visibleTopPosition}px`;
+        tooltip.style.top = `${visibleTopPosition+window.scrollY}px`;
         tooltip.style.left = `${newLeftPosition}px`;
     }
 }
