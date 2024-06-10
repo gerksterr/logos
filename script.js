@@ -178,6 +178,7 @@ function Showtranslation(wordPairs) {
 }
 
 // Function to update the tooltip position
+// Function to update the tooltip position
 function updateTooltipPosition(event) {
     const tooltip = document.getElementById('tooltip');
     if (tooltip) {
@@ -185,11 +186,28 @@ function updateTooltipPosition(event) {
         const additionalOffset = 10; // Adjust this value as needed
 
         // Calculate new position
-        const newTopPosition = event.clientY - tooltipHeight - additionalOffset;
-        const newLeftPosition = event.clientX;
+        let newTopPosition = event.clientY - tooltipHeight - additionalOffset;
+        let newLeftPosition = event.clientX - 20;//(tooltip.offsetWidth / 2);
+console.log(newTopPosition);
+newTopPosition = newTopPosition < 0 ? 0 : newTopPosition;
+        // Get the screen width
+        const screenWidth = window.innerWidth;
+
+        // Check if the tooltip spills over to the right
+        // if (newLeftPosition + tooltip.offsetWidth > screenWidth) {
+        //     tooltip.style.maxWidth = `${screenWidth - event.clientX - 20}px`; // Adjust width to fit within the screen
+        // } else
+        // tooltip.style.maxWidth = screenWidth;
+
+        // Check if the tooltip spills over to the left
+        if (newLeftPosition < 0) {
+        //   tooltip.style.maxWidth = `${event.clientX - 20}px`; // Adjust width to fit within the screen
+            newLeftPosition = 10; // Set a minimum left position
+        }
 
         // Apply new position
         tooltip.style.top = `${newTopPosition}px`;
         tooltip.style.left = `${newLeftPosition}px`;
     }
 }
+
