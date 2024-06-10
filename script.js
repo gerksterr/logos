@@ -174,7 +174,7 @@ function updateTooltipPosition(event) {
     const tooltip = document.querySelector('.word .current-meaning');
     if (tooltip) {
         // Make sure the tooltip is visible to measure its dimensions
-        tooltip.style.visibility = 'hidden'; // Hide it without affecting layout
+       // tooltip.style.visibility = 'hidden'; // Hide it without affecting layout
         tooltip.style.display = 'block';
 
         const tooltipHeight = tooltip.offsetHeight;
@@ -189,7 +189,7 @@ function updateTooltipPosition(event) {
         tooltip.style.left = `${newLeftPosition}px`;
 
         // Make the tooltip visible again
-        tooltip.style.visibility = 'visible';
+       // tooltip.style.visibility = 'visible';
     }
 }
 
