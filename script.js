@@ -181,7 +181,7 @@ function updateTooltipPosition(event) {
         const additionalOffset = 10; // Adjust this value as needed
 
         // Calculate new position
-        const newTopPosition = event.clientY - tooltipHeight - additionalOffset;
+        const newTopPosition = event.clientY + 50;// - tooltipHeight - additionalOffset;
         const newLeftPosition = event.clientX;
 
         // Apply new position
