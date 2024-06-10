@@ -169,8 +169,13 @@ function Showtranslation(wordPairs) {
 }
 
 
-  function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.current-meaning[data-tooltip]:hover::after');
-    // Rest of the code remains the same
-  }
-  document.addEventListener('mousemove', updateTooltipPosition);
+function updateTooltipPosition(event) {
+    const tooltip = document.querySelector('.current-meaning::after');
+    if (tooltip) {
+        const tooltipStyle = document.styleSheets[0].cssRules[0].style;
+        tooltipStyle.setProperty('top', `${event.clientY - tooltip.offsetHeight - 20}px`);
+        tooltipStyle.setProperty('left', `${event.clientX}px`);
+    }
+}
+
+document.addEventListener('mousemove', updateTooltipPosition);
