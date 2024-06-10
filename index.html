@@ -61,8 +61,11 @@
 
 .word .current-meaning::after {
   content: attr(data-greek);
-  display: none;
   position: absolute;
+  top: var(--tooltip-top, 20px); /* Default position */
+  left: var(--tooltip-left, 0px); /* Default p */
+
+  display: none;
   top: -1.5em;
   left: 0;
   white-space: nowrap;
