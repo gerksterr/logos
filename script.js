@@ -185,7 +185,7 @@ function updateTooltipPosition(event) {
         const newLeftPosition = event.clientX;
 
         // Apply new position
-        tooltip.style.top = `${newTopPosition}px`;
+        tooltip.top = `${newTopPosition}px`;
         tooltip.style.left = `${newLeftPosition}px`;
 
         // Make the tooltip visible again
