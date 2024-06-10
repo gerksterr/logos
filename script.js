@@ -205,8 +205,9 @@ newTopPosition = newTopPosition < 0 ? 0 : newTopPosition;
             newLeftPosition = 10; // Set a minimum left position
         }
 
+        const visibleTopPosition = newTopPosition < window.scrollY ? window.scrollY : newTopPosition;
         // Apply new position
-        tooltip.style.top = `${newTopPosition}px`;
+        tooltip.style.top = `${visibleTopPosition}px`;
         tooltip.style.left = `${newLeftPosition}px`;
     }
 }
