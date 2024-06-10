@@ -170,11 +170,22 @@ function Showtranslation(wordPairs) {
 
 
 function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.current-meaning::after');
+    const tooltip = document.querySelector('.word:hover .current-meaning::after');
     if (tooltip) {
+        // Temporarily display the tooltip to measure its height
+        tooltip.style.display = 'block';
+        const tooltipHeight = tooltip.offsetHeight;
+
+        // Calculate new position
+        const newTopPosition = event.clientY - tooltipHeight - 20; // 20 is an additional offset
+
+        // Apply new position
         const tooltipStyle = document.styleSheets[0].cssRules[0].style;
-        tooltipStyle.setProperty('top', `${event.clientY - tooltip.offsetHeight - 20}px`);
+        tooltipStyle.setProperty('top', `${newTopPosition}px`);
         tooltipStyle.setProperty('left', `${event.clientX}px`);
+
+        // Hide the tooltip after measuring to prevent flicker
+        tooltip.style.display = '';
     }
 }
 
