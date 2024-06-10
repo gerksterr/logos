@@ -28,7 +28,6 @@ async function loadFile(file) {
         var text = await response.text();
         text = text.trim().endsWith(',') ? text.trim().slice(0, -1) : text.trim();
         const jsonText = `[${text}]`;
-        console.log(jsonText);
         const wordPairs = JSON.parse(jsonText);
         Showtranslation(wordPairs);
     } catch (error) {
@@ -75,9 +74,7 @@ function Showtranslation(wordPairs) {
     }
 
     function toggleBorders() {
-        console.log('test2');
         const toggle = document.getElementById('toggle-border').checked;
-        console.log(toggle);
         const words = document.querySelectorAll('.word');
         words.forEach(word => {
             const currentMeaning = word.querySelector('.current-meaning');
@@ -92,7 +89,6 @@ function Showtranslation(wordPairs) {
         });
     }
 
-    console.log('test');
     wordPairs.forEach(wp => {
         var element;
         if (wp.length == 0) {
@@ -103,11 +99,10 @@ function Showtranslation(wordPairs) {
             element = document.createElement('span');
             element.className = 'word';
             var tooltip = wp[0];
-            //check the last element of wp. If it is a string, then add it at the end of the tooltip
-            if (typeof wp[wp.length - 1] === 'string') 
-                tooltip = `${tooltip} - ${wp[wp.length-1]}`;
-
-            
+            // Check the last element of wp. If it is a string, then add it at the end of the tooltip
+            if (typeof wp[wp.length - 1] === 'string') {
+                tooltip = `${tooltip} - ${wp[wp.length - 1]}`;
+            }
 
             element.setAttribute('data-greek', tooltip);
 
@@ -124,16 +119,15 @@ function Showtranslation(wordPairs) {
             meaningsDiv.className = 'meanings';
 
             meanings.forEach(meaning => {
-                if(typeof meaning === 'string') return;
+                if (typeof meaning === 'string') return;
 
-                //console.log('test3');
                 const meaningSpan = document.createElement('span');
                 meaningSpan.innerText = meaning[0];
                 meaningSpan.style.display = 'block';
                 meaningSpan.style.cursor = 'pointer';
                 meaningSpan.style.borderColor = getBorderColor(meaning[1]);
                 meaningSpan.className = 'border-color';
-                meaningSpan.onclick = function() {
+                meaningSpan.onclick = function () {
                     currentMeaning.innerText = meaning[0];
                     currentMeaning.setAttribute('data-strength', meaning[1]);
                     currentMeaning.style.borderColor = getBorderColor(meaning[1]);
@@ -145,13 +139,13 @@ function Showtranslation(wordPairs) {
             element.appendChild(currentMeaning);
             element.appendChild(meaningsDiv);
 
-            element.oncontextmenu = function(event) {
+            element.oncontextmenu = function (event) {
                 event.preventDefault();
                 const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
                 window.open(url, '_blank');
             };
 
-            element.onmousedown = function(event) {
+            element.onmousedown = function (event) {
                 if (event.ctrlKey) {
                     const url = `https://logeion.uchicago.edu/${encodeURIComponent(wp[0])}`;
                     window.open(url, '_blank');
@@ -159,6 +153,21 @@ function Showtranslation(wordPairs) {
             };
 
             textContainer.appendChild(element);
+
+            // Add event listeners for the tooltip
+            element.addEventListener('mouseenter', function(event) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.textContent = element.getAttribute('data-greek');
+                tooltip.style.display = 'block';
+                updateTooltipPosition(event);
+            });
+
+            element.addEventListener('mousemove', updateTooltipPosition);
+
+            element.addEventListener('mouseleave', function() {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'none';
+            });
         }
     });
 
@@ -168,30 +177,19 @@ function Showtranslation(wordPairs) {
     toggleBorders();
 }
 
-
-// Assuming you have a tooltip element with the class 'tooltip'
+// Function to update the tooltip position
 function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.word .current-meaning::after');
+    const tooltip = document.getElementById('tooltip');
     if (tooltip) {
-        // Make sure the tooltip is visible to measure its dimensions
-       // tooltip.style.visibility = 'hidden'; // Hide it without affecting layout
-        tooltip.style.display = 'block';
-
         const tooltipHeight = tooltip.offsetHeight;
         const additionalOffset = 10; // Adjust this value as needed
 
         // Calculate new position
-        const newTopPosition = event.clientY + 50;// - tooltipHeight - additionalOffset;
+        const newTopPosition = event.clientY - tooltipHeight - additionalOffset;
         const newLeftPosition = event.clientX;
 
         // Apply new position
-        tooltip.top = `${newTopPosition}px`;
+        tooltip.style.top = `${newTopPosition}px`;
         tooltip.style.left = `${newLeftPosition}px`;
-
-        // Make the tooltip visible again
-       // tooltip.style.visibility = 'visible';
     }
 }
-
-// Example usage: Assuming you have an event listener for mousemove
-document.addEventListener('mousemove', updateTooltipPosition);
