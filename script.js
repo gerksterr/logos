@@ -195,5 +195,3 @@ function updateTooltipPosition(event) {
 
 // Example usage: Assuming you have an event listener for mousemove
 document.addEventListener('mousemove', updateTooltipPosition);
-
-document.addEventListener('mousemove', updateTooltipPosition);
