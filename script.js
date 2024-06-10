@@ -169,24 +169,31 @@ function Showtranslation(wordPairs) {
 }
 
 
+// Assuming you have a tooltip element with the class 'tooltip'
 function updateTooltipPosition(event) {
-    const tooltip = document.querySelector('.word:hover .current-meaning::after');
+    const tooltip = document.querySelector('.tooltip');
     if (tooltip) {
-        // Temporarily display the tooltip to measure its height
+        // Make sure the tooltip is visible to measure its dimensions
+        tooltip.style.visibility = 'hidden'; // Hide it without affecting layout
         tooltip.style.display = 'block';
+
         const tooltipHeight = tooltip.offsetHeight;
+        const additionalOffset = 10; // Adjust this value as needed
 
         // Calculate new position
-        const newTopPosition = event.clientY - tooltipHeight - 20; // 20 is an additional offset
+        const newTopPosition = event.clientY - tooltipHeight - additionalOffset;
+        const newLeftPosition = event.clientX;
 
         // Apply new position
-        const tooltipStyle = document.styleSheets[0].cssRules[0].style;
-        tooltipStyle.setProperty('top', `${newTopPosition}px`);
-        tooltipStyle.setProperty('left', `${event.clientX}px`);
+        tooltip.style.top = `${newTopPosition}px`;
+        tooltip.style.left = `${newLeftPosition}px`;
 
-        // Hide the tooltip after measuring to prevent flicker
-        tooltip.style.display = '';
+        // Make the tooltip visible again
+        tooltip.style.visibility = 'visible';
     }
 }
+
+// Example usage: Assuming you have an event listener for mousemove
+document.addEventListener('mousemove', updateTooltipPosition);
 
 document.addEventListener('mousemove', updateTooltipPosition);
