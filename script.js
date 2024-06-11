@@ -1,6 +1,5 @@
 let ctrlPressed = false;
 let shiftPressed = false;
-let altPressed = false;
 let isGreek = false;
 
 function measureTextWidth(text, font = '16px Arial') {
@@ -64,7 +63,6 @@ document.addEventListener('keydown', (event) => {
         shiftPressed = true;
         showMeaningsInPlace(true);
     }
-    if(event.altKey) altPressed = true;
 });
 
 document.addEventListener('keyup', (event) => {
@@ -79,7 +77,6 @@ document.addEventListener('keyup', (event) => {
             showMeaningsInPlace(false);
         }
     }
-    if(!event.altKey) altPressed = false
 });
 
 function updateTooltipPosition(event) {
@@ -273,9 +270,7 @@ function Showtranslation(wordPairs) {
             element.appendChild(currentMeaning);
             element.appendChild(meaningsDiv);
 
-            element.oncontextmenu = function (event) {
-                
-                //if(!altPressed) return;                
+            element.oncontextmenu = function (event) {         
                 if(!event.altKey) return;
                 event.preventDefault();
                 const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
