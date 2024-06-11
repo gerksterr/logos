@@ -1,5 +1,6 @@
 let ctrlPressed = false;
 let shiftPressed = false;
+let altPressed = false;
 let isGreek = false;
 
 function measureTextWidth(text, font = '16px Arial') {
@@ -23,9 +24,6 @@ function toggleGreekWords(showGreek) {
         const englishWord = word.getAttribute('data-english');
         if (showGreek) {
             word.setAttribute('data-original', word.innerText);
-            if(word.innerText == "Ἀλλὰ") {
-                word.innerText = word.innerText + " (ἀλλά)";
-            }
             word.innerText = greekWord;
             const greekWidth = measureTextWidth(greekWord);
             const englishWidth = measureTextWidth(englishWord);
@@ -66,6 +64,7 @@ document.addEventListener('keydown', (event) => {
         shiftPressed = true;
         showMeaningsInPlace(true);
     }
+    if(event.altKey) altPressed = true;
 });
 
 document.addEventListener('keyup', (event) => {
@@ -80,6 +79,7 @@ document.addEventListener('keyup', (event) => {
             showMeaningsInPlace(false);
         }
     }
+    if(!event.altKey) altPressed = false
 });
 
 function updateTooltipPosition(event) {
@@ -273,11 +273,14 @@ function Showtranslation(wordPairs) {
             element.appendChild(currentMeaning);
             element.appendChild(meaningsDiv);
 
-            // element.oncontextmenu = function (event) {
-            //     event.preventDefault();
-            //     const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
-            //     window.open(url, '_blank');
-            // };
+            element.oncontextmenu = function (event) {
+                
+                //if(!altPressed) return;                
+                if(!event.altKey) return;
+                event.preventDefault();
+                const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
+                window.open(url, '_blank');
+            };
 
             textContainer.appendChild(element);
 
