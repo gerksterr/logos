@@ -1,3 +1,87 @@
+let ctrlPressed = false;
+let shiftPressed = false;
+let isGreek = false;
+
+function measureTextWidth(text, font = '16px Arial') {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = font;
+    return context.measureText(text).width * 1.05;
+}
+
+function toggleGreekWords(showGreek) {
+    if(showGreek)
+        if(isGreek) return;
+        else isGreek = true;
+    else
+        if(!isGreek) return;
+        else isGreek = false;
+
+    const words = document.querySelectorAll('.word .current-meaning');
+    words.forEach(word => {
+        const greekWord = word.parentElement.getAttribute('data-greek').split(' - ')[0];
+        const englishWord = word.getAttribute('data-english');
+        if (showGreek) {
+            word.setAttribute('data-original', word.innerText);
+            if(word.innerText == "Ἀλλὰ") {
+                word.innerText = word.innerText + " (ἀλλά)";
+            }
+            word.innerText = greekWord;
+            const greekWidth = measureTextWidth(greekWord);
+            const englishWidth = measureTextWidth(englishWord);
+            word.parentElement.style.width = `${Math.max(greekWidth, englishWidth)}px`;
+        } else  {
+            const originalText = word.getAttribute('data-english');
+            if (originalText) {
+                word.innerText = originalText;
+                word.parentElement.style.width = 'auto';
+            }
+        }
+    });
+}
+
+function showMeaningsInPlace(showMeanings) {
+    const words = document.querySelectorAll('.word .current-meaning');
+    words.forEach(word => {
+        const meanings = word.parentElement.querySelectorAll('.meanings span');
+        if (showMeanings) {
+            const translation = meanings[0].innerText;
+            word.setAttribute('data-original', word.innerText);
+            word.innerText = translation;
+        } else {
+            const greekWord = word.getAttribute('data-original');
+            if (greekWord) {
+                word.innerText = greekWord;
+            }
+        }
+    });
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.ctrlKey && !ctrlPressed) {
+        ctrlPressed = true;
+        toggleGreekWords(true);
+    }
+    if (event.shiftKey && ctrlPressed && !shiftPressed) {
+        shiftPressed = true;
+        showMeaningsInPlace(true);
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    if (!event.ctrlKey && ctrlPressed) {
+        ctrlPressed = false;
+        shiftPressed = false;
+        toggleGreekWords(false);
+    }
+    if (!event.shiftKey && shiftPressed) {
+        shiftPressed = false;
+        if (ctrlPressed) {
+            showMeaningsInPlace(false);
+        }
+    }
+});
+
 function updateTooltipPosition(event) {
     const tooltip = document.getElementById('tooltip');
     if (tooltip) {
@@ -46,8 +130,6 @@ function updateTooltipPosition(event) {
     }
 }
 
-
-// Full updated script.js snippet with additional debugging
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -162,6 +244,7 @@ function Showtranslation(wordPairs) {
             currentMeaning.className = 'current-meaning border-color';
             currentMeaning.innerText = meanings[0][0];
             currentMeaning.setAttribute('data-greek', tooltip);
+            currentMeaning.setAttribute('data-english', meanings[0][0]); // Save the English word
             currentMeaning.setAttribute('data-strength', meanings[0][1]);
             currentMeaning.style.borderColor = getBorderColor(meanings[0][1]);
 
@@ -179,6 +262,7 @@ function Showtranslation(wordPairs) {
                 meaningSpan.className = 'border-color';
                 meaningSpan.onclick = function () {
                     currentMeaning.innerText = meaning[0];
+                    currentMeaning.setAttribute('data-english', meaning[0]);
                     currentMeaning.setAttribute('data-strength', meaning[1]);
                     currentMeaning.style.borderColor = getBorderColor(meaning[1]);
                     toggleBorders(); // Update border visibility based on the toggle
@@ -189,18 +273,11 @@ function Showtranslation(wordPairs) {
             element.appendChild(currentMeaning);
             element.appendChild(meaningsDiv);
 
-            element.oncontextmenu = function (event) {
-                event.preventDefault();
-                const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
-                window.open(url, '_blank');
-            };
-
-            element.onmousedown = function (event) {
-                if (event.ctrlKey) {
-                    const url = `https://logeion.uchicago.edu/${encodeURIComponent(wp[0])}`;
-                    window.open(url, '_blank');
-                }
-            };
+            // element.oncontextmenu = function (event) {
+            //     event.preventDefault();
+            //     const url = `https://www.google.com/search?q=${encodeURIComponent(wp[0])}`;
+            //     window.open(url, '_blank');
+            // };
 
             textContainer.appendChild(element);
 
