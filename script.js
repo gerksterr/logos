@@ -1,3 +1,61 @@
+// Function to update the tooltip position
+function updateTooltipPosition(event) {
+    const tooltip = document.getElementById('tooltip');
+    if (tooltip) {
+        // Debugging: Log the tooltip position and size
+        console.log('Tooltip found');
+        console.log(`Initial Tooltip Dimensions - Height: ${tooltip.offsetHeight}, Width: ${tooltip.offsetWidth}`);
+        
+        // Wait for the next animation frame to ensure proper rendering
+        requestAnimationFrame(() => {
+            const tooltipHeight = tooltip.offsetHeight;
+            const tooltipWidth = tooltip.offsetWidth;
+            const additionalOffset = 10; // Adjust this value as needed
+
+            // Get the screen dimensions and scroll position
+            const screenWidth = window.innerWidth;
+            const scrollY = window.scrollY;
+
+            // Calculate initial position
+            let newTopPosition = event.clientY + scrollY - tooltipHeight - additionalOffset;
+            let newLeftPosition = event.clientX - (tooltipWidth / 2);
+
+            // Reset maxWidth before recalculating
+            tooltip.style.maxWidth = 'none';
+
+            // Check if the tooltip spills over to the right
+            if (newLeftPosition + tooltipWidth > screenWidth) {
+                tooltip.style.maxWidth = `${screenWidth - event.clientX - 20}px`; // Adjust width to fit within the screen
+            }
+
+            // Check if the tooltip spills over to the left
+            if (newLeftPosition < 0) {
+                tooltip.style.maxWidth = `${event.clientX - 20}px`; // Adjust width to fit within the screen
+                newLeftPosition = 10; // Set a minimum left position
+            }
+
+            // Set a reasonable minimum maxWidth to ensure readability
+            const minWidth = 100; // Adjust this value as needed
+            if (parseInt(tooltip.style.maxWidth) < minWidth) {
+                tooltip.style.maxWidth = `${minWidth}px`;
+            }
+
+            // Adjust if the tooltip would go off the top of the screen
+            if (newTopPosition < scrollY) {
+                newTopPosition = event.clientY + scrollY + additionalOffset;
+            }
+
+            // Debugging: Log the new tooltip position
+            console.log(`New Tooltip Position - Top: ${newTopPosition}px, Left: ${newLeftPosition}px`);
+            
+            // Apply new position
+            tooltip.style.top = `${newTopPosition}px`;
+            tooltip.style.left = `${newLeftPosition}px`;
+        });
+    }
+}
+
+// Full updated script.js snippet with additional debugging
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -176,58 +234,3 @@ function Showtranslation(wordPairs) {
     // Initial call to apply the border visibility based on the default toggle state
     toggleBorders();
 }
-
-// Function to update the tooltip position
-// Function to update the tooltip position
-// Function to update the tooltip position
-function updateTooltipPosition(event) {
-    const tooltip = document.getElementById('tooltip');
-    if (tooltip) {
-        const tooltipHeight = tooltip.offsetHeight;
-        const tooltipWidth = tooltip.offsetWidth;
-        const additionalOffset = 10; // Adjust this value as needed
-
-        // Get the screen dimensions and scroll position
-        const screenWidth = window.innerWidth;
-        const scrollY = window.scrollY;
-
-        // Calculate initial position
-        let newTopPosition = event.clientY + scrollY - tooltipHeight - additionalOffset;
-        let newLeftPosition = event.clientX - (tooltipWidth / 2);
-
-        // Reset maxWidth before recalculating
-        tooltip.style.maxWidth = 'none';
-
-        // Check if the tooltip spills over to the right
-        if (newLeftPosition + tooltipWidth > screenWidth) {
-            tooltip.style.maxWidth = `${screenWidth - event.clientX - 20}px`; // Adjust width to fit within the screen
-        }
-
-        // Check if the tooltip spills over to the left
-        if (newLeftPosition < 0) {
-            tooltip.style.maxWidth = `${event.clientX - 20}px`; // Adjust width to fit within the screen
-            newLeftPosition = 10; // Set a minimum left position
-        }
-
-        // Set a reasonable minimum maxWidth to ensure readability
-        const minWidth = 100; // Adjust this value as needed
-        if (parseInt(tooltip.style.maxWidth) < minWidth) {
-            tooltip.style.maxWidth = `${minWidth}px`;
-        }
-
-        // Adjust if the tooltip would go off the top of the screen
-        if (newTopPosition < scrollY) {
-            newTopPosition = event.clientY + scrollY + additionalOffset;
-        }
-
-        // Apply new position
-        tooltip.style.top = `${newTopPosition}px`;
-        tooltip.style.left = `${newLeftPosition}px`;
-    }
-}
-
-// Rest of your code remains unchanged
-
-
-// Rest of your code remains unchanged
-
