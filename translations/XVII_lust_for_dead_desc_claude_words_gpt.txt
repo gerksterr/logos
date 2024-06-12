@@ -1,4 +1,3 @@
-[
 ["Wenn", ["when", 100], "Introduces a hypothetical or conditional situation, setting the stage for the rest of the sentence and the ideas that follow."],
 ["der", ["the", 100], "Refers to a specific, known entity that is about to be introduced, in this case, 'Gott' (God), used to denote a divine or transcendent presence."],
 ["Gott", ["God", 100], "Refers to a divine or transcendent being, often understood as the creator and ruler of the universe, but in this context, likely used to represent a powerful, transformative force or presence in one's life."],
@@ -632,5 +631,3 @@
 [".", [".", 100], "Introduces a specific, known entity or concept that is the source or origin of the following action or quality, often used to create a sense of derivation, attribution, or characterization."],
 ["Es", ["it", 100], "Describes a quality or state of being incomprehensible, ungraspable, or beyond understanding, often used to suggest a sense of vastness, complexity, or transcendence."],
 ["ist", ["is", 100], "Refers to an abundance, plenitude, or richness, often used to suggest a sense of overflow, excess, or generosity."],
-
-]
