@@ -1,0 +1,37 @@
+name: Update translations.json
+
+on:
+  push:
+    paths:
+      - translations/**
+
+jobs:
+  update-translations-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate translations.json
+        run: |
+          echo "[" > translations.json
+          for file in translations/*; do
+            echo "  \"$(basename $file)\"," >> translations.json
+          done
+          sed -i '$ s/,$//' translations.json
+          echo "]" >> translations.json
+          echo "Generated translations.json:"
+          cat translations.json
+          echo "Files in repository:"
+          ls -la
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add translations.json
+          git commit -m 'Update translations.json' || echo "No changes to commit"
+          git push
