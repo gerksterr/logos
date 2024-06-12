@@ -112,6 +112,7 @@
 ["und", ["and", 100], "Connects two or more similar or related ideas, qualities, or characteristics, suggesting that they are part of a larger whole or theme."],
 ["rotglühend", ["red-hot", 60], ["glowing red", 40], "Describes a quality or characteristic of being red-hot, glowing, or incandescent, often used to suggest a sense of intensity, passion, or barely contained energy."],
 ["?", ["?", 100], "Marks the end of a question, indicating a request for information, clarification, or confirmation and inviting a response or reflection from the listener or reader."],
+[],
 ["Welches", ["Which", 100], "Introduces a question or inquiry that seeks to identify or specify a particular entity or concept, often used to express curiosity, uncertainty, or a desire for more precise information."],
 ["Feuer", ["fire", 100], "Refers to the phenomenon of fire, often used metaphorically to describe situations or experiences that are intense, passionate, transformative, or potentially destructive."],
 ["ist", ["is", 100], "Describes a state of being or existence, often used to characterize the nature or quality of a particular situation or phenomenon."],
