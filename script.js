@@ -6,7 +6,7 @@ function measureTextWidth(text, font = '16px Arial') {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     context.font = font;
-    return context.measureText(text).width * 1.05;
+    return context.measureText(text).width + 10;
 }
 
 function toggleGreekWords(showGreek) {
@@ -171,7 +171,11 @@ function displayFileList(files) {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
         fileItem.textContent = file.replace('translations/', '');
-        fileItem.addEventListener('click', () => loadFile(file));
+        fileItem.addEventListener('click', () => {
+            document.title = `logos - ${file.replace('translations/', '')}`;
+            window.history.pushState("logos", file.replace('translations/', ''), "?book=" + file.replace('translations/', ''));
+            loadFile(file);
+        });
         fileList.appendChild(fileItem);
     });
 }
