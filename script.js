@@ -219,6 +219,7 @@ function Showtranslation(wordPairs) {
             const currentMeaning = word.querySelector('.current-meaning');
             const strength = parseInt(currentMeaning.getAttribute('data-strength'));
             if (strength === 100) {
+            //if(currentMeaning.getAttribute("num-meanings") == 1) {
                 if (toggle) {
                     currentMeaning.style.borderColor = getBorderColor(strength);
                 } else {
@@ -253,6 +254,7 @@ function Showtranslation(wordPairs) {
             currentMeaning.setAttribute('data-greek', tooltip);
             currentMeaning.setAttribute('data-english', meanings[0][0]); // Save the English word
             currentMeaning.setAttribute('data-strength', meanings[0][1]);
+            //currentMeaning.setAttribute('num-meanings', wp.length - 1);
             currentMeaning.style.borderColor = getBorderColor(meanings[0][1]);
 
             const meaningsDiv = document.createElement('div');
