@@ -159,6 +159,8 @@ async function loadFile(file) {
         const jsonText = `[${text}]`;
         const wordPairs = JSON.parse(jsonText);
         Showtranslation(wordPairs);
+        //set cookie for the last opened book
+        setCookie('lastBook', file.replace('translations/', ''), 365);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
@@ -185,7 +187,11 @@ function displayFileList(files) {
     displayFileList(files);
 
     // Check for the 'book' parameter in the URL and autoload the file if present
-    const book = getUrlParameter('book');
+    let book = getUrlParameter('book');
+    if(!book) {
+        book = getCookie('lastBook');
+        window.history.pushState("logos", book.replace('translations/', ''), "?book=" + book.replace('translations/', ''));
+    }
     if (book) {
         const fileToLoad = files.find(file => file.endsWith(book));
         if (fileToLoad) {
@@ -304,4 +310,27 @@ function Showtranslation(wordPairs) {
 
     // Initial call to apply the border visibility based on the default toggle state
     toggleBorders();
+}
+
+
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
 }
