@@ -158,9 +158,13 @@ async function loadFile(file) {
         text = text.trim().endsWith(',') ? text.trim().slice(0, -1) : text.trim();
         const jsonText = `[${text}]`;
         const wordPairs = JSON.parse(jsonText);
+
         Showtranslation(wordPairs);
         //set cookie for the last opened book
         setCookie('lastBook', file.replace('translations/', ''), 365);
+        
+        document.title = `logos - ${file.replace('translations/', '')}`;
+        window.history.pushState("logos", file.replace('translations/', ''), "?book=" + file.replace('translations/', ''));
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
@@ -174,8 +178,6 @@ function displayFileList(files) {
         fileItem.className = 'file-item';
         fileItem.textContent = file.replace('translations/', '');
         fileItem.addEventListener('click', () => {
-            document.title = `logos - ${file.replace('translations/', '')}`;
-            window.history.pushState("logos", file.replace('translations/', ''), "?book=" + file.replace('translations/', ''));
             loadFile(file);
         });
         fileList.appendChild(fileItem);
