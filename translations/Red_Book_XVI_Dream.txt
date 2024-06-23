@@ -511,7 +511,7 @@
 ["wankt", ["sways", 70], ["wobbles", 30], "This verb describes unstable movement, metaphorically representing the narrator's sense of psychological instability."],
 ["-", ["-", 100], "Another dash, continuing the fragmented style of the narrator's speech."],
 ["alles", ["everything", 100], "A totalizing pronoun, suggesting that the entire psychic landscape is affected."],
-["wogt", ["surges", 70], ["undulates", 30], "This verb, used earlier to describe the chaotic psychic state, is repeated here, emphasizing the ongoing nature of the turbulent experience."]
+["wogt", ["surges", 70], ["undulates", 30], "This verb, used earlier to describe the chaotic psychic state, is repeated here, emphasizing the ongoing nature of the turbulent experience."],
 ["Jemand", ["Someone", 90], ["Somebody", 10], "An indefinite pronoun, likely referring to the same figure who approached earlier. In the context of this vision, it represents a part of the psyche interacting with the narrator's conscious self."],
 [":", [":", 100], "Introduces the speech of this figure."],
 ["Aber", ["But", 100], "A conjunction introducing a contrasting statement, suggesting that the figure disagrees with or wants to correct the narrator's perception."],
@@ -1483,7 +1483,6 @@
 ["die", ["the", 100], "Specifies a particular truth."],
 ["Wahrheit", ["truth", 100], "Suggests that lived experience itself is the fundamental reality."],
 [",", [",", 100], "Pauses before elaborating on this concept of truth."],
-["die", ["that", 100], CopyRetryClaude’s response was limited as it hit the maximum length allowed at this time.BFproceed from last line. only translate the following part then stop:die wir suchen. Nur mein Leben ist die Wahrheit, die Wahrheit überhaupt. Wir schaffen die Wahrheit, indem wir sie leben. EditContinuing from the last line, focusing on meaning and context:
 ["die", ["that", 100], "Refers back to the truth, connecting it to what follows."],
 ["wir", ["we", 100], "Continues the collective perspective, suggesting a universal human experience."],
 ["suchen", ["seek", 90], ["search for", 10], "Implies an active quest for truth, representing the process of individuation or spiritual growth."],
