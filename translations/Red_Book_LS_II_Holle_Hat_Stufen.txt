@@ -22,7 +22,6 @@
 ["in", ["in", 90], ["within", 10]],
 ["mir", ["me", 100]],
 [".", [".", 100]],
-
 ["Es", ["It", 95], ["This", 5]],
 ["schleicht", ["creeps", 70], ["sneaks", 20], ["steals", 10]],
 ["heran", ["up", 60], ["closer", 30], ["near", 10]],
@@ -35,7 +34,6 @@
 ["giftiger", ["poisonous", 60], ["toxic", 30], ["venomous", 10]],
 ["Nebel", ["fog", 80], ["mist", 20]],
 [".", [".", 100]],
-
 ["Und", ["And", 100]],
 ["wenn", ["when", 90], ["if", 10]],
 ["deine", ["your", 100]],
@@ -70,7 +68,6 @@
 ["übel", ["sick", 60], ["nauseous", 30], ["ill", 10]],
 ["wird", ["becomes", 100]],
 [".", [".", 100]],
-
 ["Hier", ["Here", 100]],
 ["hörst", ["stop", 90], ["cease", 10]],
 ["du", ["you", 100]],
@@ -83,7 +80,6 @@
 ["Jenseits", ["beyond", 50], ["afterlife", 30], ["other side", 20]],
 ["hinüberzufühlen", ["to sense across", 60], ["to feel over", 30], ["to perceive beyond", 10]],
 [".", [".", 100]],
-
 ["Erschreckt", ["Frightened", 70], ["Startled", 20], ["Terrified", 10]],
 ["und", ["and", 100]],
 ["angewidert", ["disgusted", 80], ["repulsed", 20]],
@@ -99,7 +95,6 @@
 ["sichtbaren", ["visible", 90], ["apparent", 10]],
 ["Welt", ["world", 100]],
 [".", [".", 100]],
-
 ["Du", ["You", 100]],
 ["spuckst", ["spit", 100]],
 ["aus", ["out", 100]],
@@ -160,7 +155,6 @@
 ["Munde", ["mouth", 100]],
 ["gewesen", ["been", 100]],
 [".", [".", 100]],
-
 ["Hier", ["Here", 100]],
 ["mögest", ["may", 90], ["might", 10]],
 ["du", ["you", 100]],
@@ -179,7 +173,6 @@
 ["dein", ["your", 100]],
 ["Jenseits", ["beyond", 50], ["afterlife", 30], ["other side", 20]],
 [".", [".", 100]],
-
 ["Der", ["The", 100]],
 ["Weg", ["way", 80], ["path", 20]],
 ["zu", ["to", 100]],
@@ -220,7 +213,6 @@
 ["Aushängeschilder", ["signboards", 90], ["displays", 10]],
 ["sind", ["are", 100]],
 [".", [".", 100]],
-
 ["Alles", ["Everything", 90], ["All", 10]],
 ["Verhasste", ["Hated", 90], ["Detested", 10]],
 ["und", ["and", 100]],
@@ -232,14 +224,12 @@
 ["besondere", ["special", 90], ["particular", 10]],
 ["Hölle", ["hell", 100]],
 [".", [".", 100]],
-
 ["Wie", ["How", 100]],
 ["könnte", ["could", 100]],
 ["es", ["it", 100]],
 ["anders", ["different", 90], ["otherwise", 10]],
 ["sein", ["be", 100]],
 ["?", ["?", 100]],
-
 ["Jede", ["Every", 90], ["Each", 10]],
 ["andere", ["other", 100]],
 ["Hölle", ["hell", 100]],
@@ -249,7 +239,6 @@
 ["oder", ["or", 100]],
 ["spaßhaft", ["fun", 80], ["amusing", 20]],
 [".", [".", 100]],
-
 ["Das", ["That", 90], ["This", 10]],
 ["ist", ["is", 100]],
 ["die", ["the", 100]],
@@ -257,7 +246,6 @@
 ["aber", ["but", 90], ["however", 10]],
 ["nie", ["never", 100]],
 [".", [".", 100]],
-
 ["Deine", ["Your", 100]],
 ["Hölle", ["hell", 100]],
 ["ist", ["is", 100]],
@@ -273,8 +261,6 @@
 ["mit", ["with", 100]],
 ["einem", ["a", 100]],
 ["Fluch", ["curse", 90], ["swear", 10]],
-Certainly. Continuing from the last line:
-
 ["und", ["and", 100]],
 ["einem", ["a", 100]],
 ["Fußtritt", ["kick", 90], ["boot", 10]],
@@ -283,7 +269,6 @@ Certainly. Continuing from the last line:
 ["Heiligtum", ["sanctuary", 80], ["holy place", 20]],
 ["warfest", ["threw", 90], ["cast", 10]],
 [".", [".", 100]],
-
 ["Wenn", ["When", 90], ["If", 10]],
 ["du", ["you", 100]],
 ["in", ["into", 90], ["in", 10]],
@@ -329,7 +314,6 @@ Certainly. Continuing from the last line:
 ["gefallen", ["fallen", 100]],
 ["sind", ["are", 100]],
 [".", [".", 100]],
-
 ["Du", ["You", 100]],
 ["möchtest", ["would like", 90], ["wish", 10]],
 ["wohl", ["probably", 80], ["perhaps", 20]],
