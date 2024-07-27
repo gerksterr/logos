@@ -71,7 +71,6 @@
 ["Schoss", ["shoot", 80], ["sprout", 15], ["branch", 5], ["offshoot", 0]], 
 ["hervor", ["forth", 90], ["out", 10], ["forward", 0]], 
 [".", [".", 100]],
-[],
 ["Diese", ["This", 95], ["That", 5], ["These", 0]], 
 ["neue", ["new", 100], ["novel", 0], ["fresh", 0]], 
 ["Richtung", ["direction", 95], ["orientation", 5], ["course", 0]], 
