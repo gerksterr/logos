@@ -216,10 +216,16 @@ function Showtranslation(wordPairs) {
 
     function toggleBorders() {
         const toggle = document.getElementById('toggle-border').checked;
+        //const hide_all = document.getElementById('hide-border-all').checked;
         const words = document.querySelectorAll('.word');
         words.forEach(word => {
             const currentMeaning = word.querySelector('.current-meaning');
             const strength = parseInt(currentMeaning.getAttribute('data-strength'));
+            
+            //if(hide_all){
+            //    currentMeaning.style.borderColor = 'transparent';
+            //} 
+            //else 
             if (strength === 100) {
             //if(currentMeaning.getAttribute("num-meanings") == 1) {
                 if (toggle) {
@@ -228,6 +234,13 @@ function Showtranslation(wordPairs) {
                     currentMeaning.style.borderColor = 'transparent';
                 }
             }
+        });
+    }
+    function hideAllBorders(){
+        const words = document.querySelectorAll('.word');
+        words.forEach(word => {            
+            const currentMeaning = word.querySelector('.current-meaning');
+            currentMeaning.style.borderColor = 'transparent';
         });
     }
 
@@ -311,6 +324,7 @@ function Showtranslation(wordPairs) {
     });
 
     document.getElementById('toggle-border').addEventListener('change', toggleBorders);
+    document.getElementById('hide-border-all').addEventListener('click', hideAllBorders);
 
     // Initial call to apply the border visibility based on the default toggle state
     toggleBorders();
