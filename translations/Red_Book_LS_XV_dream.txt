@@ -1117,7 +1117,7 @@
 ["Weiser", ["Wise", 100], ["Sage", 0]],
 ["Thomas", ["Thomas", 100]],
 [",", [",", 100]],
-["du", ["you", 100], ["["thou", 0]],
+["du", ["you", 100], ["thou", 0]],
 ["weißt", ["know", 100], ["are aware", 0]],
 ["wirklich", ["truly", 90], ["really", 10], ["indeed", 0]],
 ["immer", ["always", 90], ["ever", 10], ["constantly", 0]],
