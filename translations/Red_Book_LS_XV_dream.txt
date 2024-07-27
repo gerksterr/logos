@@ -1775,4 +1775,6 @@
 ["kein", ["no", 100], ["not any", 0]],
 ["Ende", ["end", 95], ["finish", 5], ["conclusion", 0]],
 ["abzusehen", ["foreseeable", 90], ["in sight", 10], ["to be seen", 0]],
-[".", [".", 100]]
+[".", [".", 100]],
+[],
+[]
