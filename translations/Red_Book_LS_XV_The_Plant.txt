@@ -2879,7 +2879,6 @@
 ["Gefährten", ["companions", 90], ["comrades", 10], ["fellows", 0]], 
 ["entdecken", ["discover", 95], ["uncover", 5], ["detect", 0]], 
 [".", [".", 100]],
-[],
 ["Was", ["What", 100], ["Whatever", 0]], 
 ["taten", ["did", 95], ["performed", 5], ["acted", 0]], 
 ["die", ["the", 100], ["that", 0]], 
